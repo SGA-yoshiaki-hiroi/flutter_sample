@@ -20,7 +20,7 @@ jobs:
           channel: 'stable'
 
       - name: Build apk
-      - run: |
+        run: |
           pwd
           echo $GITHUB_WORKSPACE
           ls -la
