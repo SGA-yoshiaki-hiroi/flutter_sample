@@ -1,0 +1,18 @@
+on: push
+name: Test, Build and Release apk
+jobs:
+  build:
+    name: Build apk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: sudosito/flutter-action@v1
+        with:
+          flutter-version: '1.22.1'
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build apk --split-per-abi
+        
