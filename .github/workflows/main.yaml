@@ -1,20 +1,26 @@
-on: push
+on: [push]
 name: Test, Build and Release apk
 jobs:
   build:
     name: Build apk
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup Java
+        uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+
+      - name: Build 
+        uses: subosito/flutter-action@v1
         with:
           flutter-version: '1.22.1'
           channel: 'stable'
       - run: |
           pwd
+          echo $GITHUB_WORKSPACE
           flutter pub get
           flutter test
           flutter build apk --split-per-abi
