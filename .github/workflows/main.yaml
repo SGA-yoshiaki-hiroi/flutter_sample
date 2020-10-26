@@ -21,13 +21,7 @@ jobs:
 
       - name: Build APK
         run: |
-          cd ProtoApp
-          pwd
           flutter pub get
           flutter test
           flutter build apk --split-per-abi
-      - name: Push APK to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/apk/debug/*.apk"
-          token: ${{ secrets.TOKEN }}
+        working-directory: ./ProtoApp
