@@ -14,7 +14,7 @@ jobs:
           flutter-version: '1.22.1'
           channel: 'stable'
       - run: |
-          cd $GITHUB_WORKSPACE
+          pwd
           flutter pub get
           flutter test
           flutter build apk --split-per-abi
