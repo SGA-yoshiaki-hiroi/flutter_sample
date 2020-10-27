@@ -1,0 +1,34 @@
+name: Test, Build and Release apk
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '1.8'
+
+      - name: Setup Flutter 
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.22.1'
+          channel: 'stable'
+
+      - name: Build APK
+        run: |
+          flutter pub get
+          flutter test
+          flutter build apk --split-per-abi
+        working-directory: ./ProtoApp
