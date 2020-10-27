@@ -105,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             Icon(Icons.ac_unit_sharp),
+            Icon(Icons.ac_unit_sharp),
           ],
         ),
       ),
