@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build apk
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -25,6 +25,10 @@ jobs:
         with:
           flutter-version: '1.22.1'
           channel: 'stable'
+          
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version 
 
       - name: Build APK
         run: |
