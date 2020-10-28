@@ -26,13 +26,16 @@ jobs:
           flutter-version: '1.22.1'
           channel: 'stable'
           
+      - name: Setup Xcode
+        run: sudo xcode-select --switch /Applications/Xcode_12.app
+      
       - name: Show Xcode version
-        run: |
-          xcodebuild -version 
+        run: xcodebuild -version
 
-      - name: Build APK
+      - name: Build
         run: |
           flutter pub get
           flutter test
-          flutter build apk --split-per-abi
+          flutter build ios
+#          flutter build apk --split-per-abi
         working-directory: ./ProtoApp
